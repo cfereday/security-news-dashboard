@@ -1,6 +1,6 @@
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: __dirname + '/src/app/index.html',
     filename: 'index.html',
@@ -25,6 +25,11 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
             },
+            {
+                test: /\.css/i,
+                use: ['style-loader', 'css-loader']
+
+            }
         ],
     },
     output: {

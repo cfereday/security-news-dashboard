@@ -1,0 +1,23 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "An aggregated security news dashboard to help me keep up to date with news in one single aggregated view",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm t"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cfereday/security-news-dashboard.git"
+  },
+  "keywords": [
+    "javascript",
+    "asynchronous"
+  ],
+  "author": "Charlotte Fereday",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cfereday/security-news-dashboard/issues"
+  },
+  "homepage": "https://github.com/cfereday/security-news-dashboard#readme"
+}

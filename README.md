@@ -14,6 +14,7 @@ This project will query different APIs to get interesting daily security tech ne
 3. Install the dependencies:
 `npm install`
 
+## To run the UI (WIP)
 4. Webpack build:
 `npm run build`
 
@@ -22,3 +23,7 @@ This project will query different APIs to get interesting daily security tech ne
 
 6. Navigate to the localhost url:
 `http://localhost:9000/`
+
+## To run the CLI tool
+7. Run the script from the root directory
+`node ./src/cli/index.js`

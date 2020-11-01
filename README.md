@@ -26,4 +26,4 @@ This project will query different APIs to get interesting daily security tech ne
 
 ## To run the CLI tool
 7. Run the script from the root directory
-`node ./src/cli/index.js`
+`node ./src/cli/fetchArticles.js`

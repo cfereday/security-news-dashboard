@@ -11,11 +11,19 @@ export const fetchLatestDevToNews = () => {
         .then(latestArticles => keyInfo(latestArticles))
 };
 
+
+
 const createFile = (articles) => {
     const flattenedArticles = articles.flat();
-    const latestArticles = flattenedArticles.map(JSON.stringify).join("\n");
+    const latestArticles = flattenedArticles.map(article => `### Article
+    Title
+    ${article.title} \n
+    Description
+    ${article.description}\n
+    Url
+    ${article.url}\n`).join("\n");
 
-    fs.writeFile('devToArticles.txt', latestArticles, function (err) {
+    fs.writeFile('devToArticles.md', latestArticles, function (err) {
         if (err) return console.log(err);
     })
 };

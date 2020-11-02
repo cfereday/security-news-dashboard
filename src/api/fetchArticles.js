@@ -6,18 +6,8 @@ const keyDevToInfo = (allArticles) => {
 };
 
 const keySubRedditInfo = (allArticles) => {
-    const subRedditArticles = allArticles.data.children.slice(0, 6);
-    const latestArticles = subRedditArticles.map(article => `### Article
-    Title
-    ${article.data.title} \n
-    Description
-    ${article.data.selftext}\n
-    Url
-    ${article.data.url}\n`).join("\n");
-
-    fs.writeFile('subRedditArtilces.md', latestArticles, function (err) {
-        if (err) return console.log(err);
-    })
+    const top5Articles = allArticles.data.children.flat().slice(0, 5);
+    return top5Articles.map(({data}) => ({title: data.title, description: data.selftext, url: data.url}))
 };
 
 export const fetchLatestDevToNews = () => {
@@ -42,14 +32,13 @@ const createFile = (articles) => {
     Url
     ${article.url}\n`).join("\n");
 
-    fs.writeFile('devToArticles.md', latestArticles, function (err) {
+    fs.writeFile('articlesToRead.md', latestArticles, function (err) {
         if (err) return console.log(err);
     })
 };
 
-Promise.all([fetchLatestDevToNews(), fetchLatestReddits()]).then((devToArticles, redditArticles) => {
-    createFile(devToArticles);
-    console.log('redditArticles', redditArticles)
-    keySubRedditInfo(redditArticles);
+Promise.all([fetchLatestDevToNews(), fetchLatestReddits()]).then((values) => {
+    createFile(values[0]);
+    createFile(values[1]);
 });
 

@@ -1,5 +1,6 @@
 import fetch from "node-fetch";
 import fs from "fs";
+import { format } from "date-fns";
 
 const keyDevToInfo = (allArticles) => {
     return allArticles.map(({title, description, url}) => ({title, description, url}))
@@ -10,6 +11,7 @@ const keySubRedditInfo = (allArticles) => {
     return top5Articles.map(({data}) => ({title: data.title, description: data.selftext, url: data.url}))
 };
 
+// :todo consider collapsing into one
 export const fetchLatestDevToNews = () => {
     return fetch('https://dev.to/api/articles?per_page=5&tag=security')
         .then(response => response.json())
@@ -24,21 +26,26 @@ const fetchLatestReddits = () => {
 
 const createFile = (articles) => {
     const flattenedArticles = articles.flat();
-    const latestArticles = flattenedArticles.map(article => `### Article
-    Title
-    ${article.title} \n
-    Description
-    ${article.description}\n
-    Url
-    ${article.url}\n`).join("\n");
+    const latestArticles = flattenedArticles.map(article => `
+## ${article.title}
 
-    fs.writeFile('articlesToRead.md', latestArticles, function (err) {
+> ${article.description}
+
+* [ ] Read more [here](${article.url})
+
+`).join("\n");
+
+    const content = `# To read 📚 on ${format(new Date(), 'EEEE')}
+    
+    ${latestArticles}
+    `;
+
+    fs.writeFile('articlesToRead.md', content, function (err) {
         if (err) return console.log(err);
     })
 };
 
-Promise.all([fetchLatestDevToNews(), fetchLatestReddits()]).then((values) => {
-    createFile(values[0]);
-    createFile(values[1]);
+Promise.all([fetchLatestDevToNews(), fetchLatestReddits()]).then(([devTo, reddit]) => {
+    createFile([...devTo, ...reddit]);
 });
 

@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "An aggregated security news dashboard to help me keep up to date with news in one single aggregated view",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "build": "webpack-cli",
     "start:dev": "webpack-cli serve",

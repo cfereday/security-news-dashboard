@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {fetchLatestDevToNews} from "../api/devToArticles"
 import {fetchLatestReddits} from "../api/reddit"
+import {npmAdvistories} from "../api/npmAdvisories"
+import {mySampleAdvisories} from "../data/sampleAdvisories"
 import {format} from "date-fns";
 
 export function App() {
@@ -13,8 +15,9 @@ export function App() {
         // ...grab me the new articles
         const devTo = await fetchLatestDevToNews();
         const reddit = await fetchLatestReddits();
+        const advisories =  npmAdvistories(mySampleAdvisories);
         // ...and when done, save them to state
-        setArticles((oldArticles) => [...oldArticles, ...devTo, ...reddit]);
+        setArticles((oldArticles) => [...oldArticles, ...devTo, ...reddit, ...advisories]);
     }, []);
     // rerun the ask if the value of this array changes
     return (

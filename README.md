@@ -24,6 +24,6 @@ This project will query different APIs to get interesting daily security tech ne
 6. Navigate to the localhost url:
 `http://localhost:9000/`
 
-## To run the CLI tool
+## To run the CLI tool - (WIP need to fix modules)
 7. Run the script from the root directory
-`node ./src/cli/fetchArticles.js`
+`node ./src/cli/index.js`

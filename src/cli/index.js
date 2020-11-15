@@ -1,4 +1,6 @@
 import { format } from "date-fns";
+import {fetchLatestDevToNews} from "../api/devToArticles";
+import {fetchLatestReddits} from "../api/reddit";
 
 const createFile = (articles) => {
     const flattenedArticles = articles.flat();

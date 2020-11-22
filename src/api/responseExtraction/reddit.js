@@ -5,9 +5,12 @@ const keySubRedditInfo = (allArticles) => {
     return top5Articles.map(({data}) => ({title: data.title, description: data.selftext, url: data.url}))
 };
 
-
-export const fetchLatestReddits = () => {
+ const fetchLatestReddits = () => {
     return fetch('https://www.reddit.com/r/security.json')
         .then(response => response.json())
         .then(latestArticles => keySubRedditInfo(latestArticles))
 };
+
+ module.exports = {
+     fetchLatestReddits
+ };

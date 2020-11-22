@@ -1,6 +1,6 @@
 const { format } = require("date-fns");
-const {fetchLatestDevToNews} = require("../client/responseExtraction/devToArticles");
-const {fetchLatestReddits} = require("../client/responseExtraction/reddit");
+const {fetchLatestDevToNews} = require("../api/responseExtraction/devToArticles");
+const {fetchLatestReddits} = require("../api/responseExtraction/reddit");
 
 const createFile = (articles) => {
     const flattenedArticles = articles.flat();

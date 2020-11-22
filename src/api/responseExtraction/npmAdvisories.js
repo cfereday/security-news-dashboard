@@ -21,8 +21,12 @@ const extractOutAdvisories = ({advisoriesData: {objects}}) => {
     });
 };
 
-export const fetchLatestAdvisories = async () => {
+const fetchLatestAdvisories = async () => {
     return await fetch('https://www.npmjs.com/advisories/', {headers})
         .then(response => response.json())
         .then(latestAdvisories => extractOutAdvisories(latestAdvisories))
+};
+
+module.exports = {
+    fetchLatestAdvisories
 };

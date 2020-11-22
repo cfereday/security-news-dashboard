@@ -1,9 +1,15 @@
+const {fetchLatestDevToNews} = require( "../responseExtraction/devToArticles");
+const {fetchLatestReddits} = require("../responseExtraction/reddit");
+const {fetchLatestAdvisories} = require("../responseExtraction/npmAdvisories");
+
 const express = require('express');
 const router = express.Router();
 
-/* GET home page. */
 router.get('/', function (req, res, next) {
-  res.send('API is working properly');
+  Promise.all([fetchLatestDevToNews(), fetchLatestReddits(), fetchLatestAdvisories()]).then(([devToArticles, redditArticles, advisories]) => {
+    const allArticles = [...devToArticles, redditArticles, advisories];
+    res.send(allArticles);
+  });
 });
 
 module.exports = router;

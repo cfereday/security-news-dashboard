@@ -1,8 +1,5 @@
 const {useState, useEffect} = require("react");
 const React = require("react");
-const {fetchLatestDevToNews} = require("../responseExtraction/devToArticles");
-const {fetchLatestReddits} = require("../responseExtraction/reddit");
-const {fetchLatestAdvisories} = require("../responseExtraction/npmAdvisories");
 const {format} = require("date-fns");
 
 export function App() {
@@ -10,36 +7,26 @@ export function App() {
     const date = format(new Date(), 'EEEE');
     // do I need to change something
 
-   const callApi = () =>  {
+    // could you...
+    useEffect(() => {
         fetch('http://localhost:3000/')
-            .then(res => res.text())
             .then(res => setArticles((oldArticles) => [...oldArticles, ...res]))
             .catch(err => err);
-    };
-    callApi();
-
-    // // could you...
-    // useEffect(async () => {
-    //     // ...grab me the new articles
-    //     const devTo = await fetchLatestDevToNews();
-    //     const reddit = await fetchLatestReddits();
-    //     const advisories = await fetchLatestAdvisories();
-    //     // ...and when done, save them to state
-    //     setArticles((oldArticles) => [...oldArticles, ...devTo, ...reddit, ...advisories]);
-    // }, []);
+        // ...and when done, save them to state
+    }, []);
     // rerun the ask if the value of this array changes
     return (
         // drawing the page
         <div>
             <h1>To read 📚 on {date}</h1>
             {articles }
-            {/*{articles.map(article => {*/}
-            {/*    return <div>*/}
-            {/*        <h3>{article.title}</h3>*/}
-            {/*        <p>{article.description}</p>*/}
-            {/*        <a href={article.url}> read the article here </a>*/}
-            {/*    </div>*/}
-            {/*})}*/}
+            {articles.map(article => {
+                return <div>
+                    <h3>{article.title}</h3>
+                    <p>{article.description}</p>
+                    <a href={article.url}> read the article here </a>
+                </div>
+            })}
         </div>
     )
 }

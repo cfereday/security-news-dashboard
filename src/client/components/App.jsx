@@ -10,27 +10,36 @@ export function App() {
     const date = format(new Date(), 'EEEE');
     // do I need to change something
 
-    // could you...
-    useEffect(async () => {
-        // ...grab me the new articles
-        const devTo = await fetchLatestDevToNews();
-        const reddit = await fetchLatestReddits();
-        const advisories = await fetchLatestAdvisories();
-        // ...and when done, save them to state
-        setArticles((oldArticles) => [...oldArticles, ...devTo, ...reddit, ...advisories]);
-    }, []);
+   const callApi = () =>  {
+        fetch('http://localhost:3000/testAPI')
+            .then(res => res.text())
+            .then(res => setArticles((oldArticles) => [...oldArticles, ...res]))
+            .catch(err => err);
+    };
+    callApi();
+
+    // // could you...
+    // useEffect(async () => {
+    //     // ...grab me the new articles
+    //     const devTo = await fetchLatestDevToNews();
+    //     const reddit = await fetchLatestReddits();
+    //     const advisories = await fetchLatestAdvisories();
+    //     // ...and when done, save them to state
+    //     setArticles((oldArticles) => [...oldArticles, ...devTo, ...reddit, ...advisories]);
+    // }, []);
     // rerun the ask if the value of this array changes
     return (
         // drawing the page
         <div>
             <h1>To read 📚 on {date}</h1>
-            {articles.map(article => {
-                return <div>
-                    <h3>{article.title}</h3>
-                    <p>{article.description}</p>
-                    <a href={article.url}> read the article here </a>
-                </div>
-            })}
+            {articles }
+            {/*{articles.map(article => {*/}
+            {/*    return <div>*/}
+            {/*        <h3>{article.title}</h3>*/}
+            {/*        <p>{article.description}</p>*/}
+            {/*        <a href={article.url}> read the article here </a>*/}
+            {/*    </div>*/}
+            {/*})}*/}
         </div>
     )
 }

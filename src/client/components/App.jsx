@@ -5,12 +5,12 @@ const {format} = require("date-fns");
 export function App() {
     const [articles, setArticles] = useState([]);
     const date = format(new Date(), 'EEEE');
-    // do I need to change something
 
     // could you...
     useEffect(() => {
-        fetch('http://localhost:3000/')
-            .then(res => setArticles((oldArticles) => [...oldArticles, ...res]))
+         fetch('http://localhost:3000/')
+            .then(res => res.json())
+            .then(newArticles => setArticles((oldArticles) => [...oldArticles, ...newArticles]))
             .catch(err => err);
         // ...and when done, save them to state
     }, []);
@@ -19,8 +19,7 @@ export function App() {
         // drawing the page
         <div>
             <h1>To read 📚 on {date}</h1>
-            {articles }
-            {articles.map(article => {
+            {articles.flat().map(article => {
                 return <div>
                     <h3>{article.title}</h3>
                     <p>{article.description}</p>

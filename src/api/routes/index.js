@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.get('/', function (req, res, next) {
   Promise.all([fetchLatestDevToNews(), fetchLatestReddits(), fetchLatestAdvisories()]).then(([devToArticles, redditArticles, advisories]) => {
-    const allArticles = [...devToArticles, redditArticles, advisories];
-    res.send(allArticles);
+    const allArticles = [...devToArticles, ...redditArticles, ...advisories];
+    res.send([allArticles]);
   });
 });
 

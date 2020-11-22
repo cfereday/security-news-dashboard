@@ -6,7 +6,7 @@ const keySubRedditInfo = (allArticles) => {
 };
 
  const fetchLatestReddits = () => {
-    return fetch('https://www.reddit.com/r/security.json')
+    return fetch('https://www.reddit.com/r/cybersecurity.json')
         .then(response => response.json())
         .then(latestArticles => keySubRedditInfo(latestArticles))
 };

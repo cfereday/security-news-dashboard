@@ -11,7 +11,7 @@ export function App() {
     // do I need to change something
 
    const callApi = () =>  {
-        fetch('http://localhost:3000/testAPI')
+        fetch('http://localhost:3000/')
             .then(res => res.text())
             .then(res => setArticles((oldArticles) => [...oldArticles, ...res]))
             .catch(err => err);

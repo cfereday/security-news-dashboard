@@ -30,7 +30,3 @@ This will start the dashboard on `localhost:9000` & display the repsonses from t
 
 6. Navigate to the localhost url:
 `http://localhost:9000/`
-
-## To run the CLI tool - (WIP need to fix modules)
-7. Run the script from the root directory
-`node ./src/cli/index.js`

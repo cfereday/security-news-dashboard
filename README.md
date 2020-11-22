@@ -19,7 +19,14 @@ This project will query different APIs to get interesting daily security tech ne
 `npm run build`
 
 5. Start the app locally:
+First start the express app backend:
+`cd src/api`
+`npm start`
+The responses from the API can be found on `localhost:3000`
+
+Second start the React frontend:
 `npm run start:dev`
+This will start the dashboard on `localhost:9000` & display the repsonses from the APIs called in the express app
 
 6. Navigate to the localhost url:
 `http://localhost:9000/`

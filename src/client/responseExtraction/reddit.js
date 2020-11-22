@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 
 const keySubRedditInfo = (allArticles) => {
     const top5Articles = allArticles.data.children.flat().slice(0, 5);

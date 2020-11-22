@@ -2,7 +2,7 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
-    template: __dirname + '/src/app/index.html',
+    template: __dirname + '/src/client/app/index.html',
     filename: 'index.html',
     inject: 'body'
 });
@@ -11,7 +11,7 @@ const CleanWebpackPluginConfig = new CleanWebpackPlugin({cleanStaleWebpackAssets
 
 module.exports = {
     mode: 'development',
-    entry: {app: __dirname + '/src/app/index.js'},
+    entry: {app: __dirname + '/src/client/app/index.js'},
     devtool: 'inline-source-map',
     devServer: {
         contentBase: path.join(__dirname, '/src/'),

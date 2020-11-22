@@ -1,4 +1,4 @@
-import fetch from "node-fetch";
+const fetch = require("node-fetch");
 
 const keyDevToInfo = (allArticles) => {
     return allArticles.map(({title, description, url}) => ({title, description, url}))

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
-import {fetchLatestDevToNews} from "../api/devToArticles"
-import {fetchLatestReddits} from "../api/reddit"
-import {npmAdvistories} from "../api/npmAdvisories"
-import {mySampleAdvisories} from "../data/sampleAdvisories"
-import {format} from "date-fns";
+const {useState, useEffect} = require("react");
+const React = require("react");
+const {fetchLatestDevToNews} = require("../responseExtraction/devToArticles");
+const {fetchLatestReddits} = require("../responseExtraction/reddit");
+const {fetchLatestAdvisories} = require("../responseExtraction/npmAdvisories");
+const {format} = require("date-fns");
 
 export function App() {
     const [articles, setArticles] = useState([]);
@@ -15,7 +15,7 @@ export function App() {
         // ...grab me the new articles
         const devTo = await fetchLatestDevToNews();
         const reddit = await fetchLatestReddits();
-        const advisories =  npmAdvistories(mySampleAdvisories);
+        const advisories = await fetchLatestAdvisories();
         // ...and when done, save them to state
         setArticles((oldArticles) => [...oldArticles, ...devTo, ...reddit, ...advisories]);
     }, []);
